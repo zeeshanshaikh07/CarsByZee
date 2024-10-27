@@ -8,10 +8,29 @@ import { Separator } from "@/components/ui/separator";
 import features from "@/Shared/features.json";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
+import { db } from "./../../configs";
+import { CarListing } from "./../../configs/schema";
+import IconField from "./components/IconField";
+import UploadImages from "./components/UploadImages";
+import { BiLoaderAlt } from "react-icons/bi";
+import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
+import { useUser } from "@clerk/clerk-react";
+import moment from "moment";
 
 const AddListing = () => {
   const [formData, setFormData] = useState([]);
+  const [featuresData, setFeaturesData] = useState([]);
+  const [triggerUploadImage, setTriggerUploadImage] = useState();
+  const [loader, setLoader] = useState(false);
+  const navigate = useNavigate();
+  const { user } = useUser();
 
+  /**
+   * To capture user input from form
+   * @param {*} name
+   * @param {*} value
+   */
   const handleInputChange = (name, value) => {
     setFormData((prevData) => ({
       ...prevData,
@@ -19,10 +38,43 @@ const AddListing = () => {
     }));
   };
 
-  const onSubmit = (e) => {
-    e.preventDefault();
-    console.log(formData);
+  /**
+   * To save selected feature list
+   * @param {*} name
+   * @param {*} value
+   */
+  const handleFeatureChange = (name, value) => {
+    setFeaturesData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+
+    console.log(featuresData);
   };
+
+  const onSubmit = async (e) => {
+    setLoader(true);
+    e.preventDefault();
+    try {
+      const result = await db
+        .insert(CarListing)
+        .values({
+          ...formData,
+          features: featuresData,
+          createdBy: user?.primaryEmailAddress?.emailAddress,
+          postedOn: moment().format("DD/MM/YYYY"),
+        })
+        .returning({ id: CarListing.id });
+      if (result) {
+        setTriggerUploadImage(result[0]?.id);
+        toast("Data submitted successfully");
+        setLoader(false);
+      }
+    } catch (e) {
+      console.log("Error", e);
+    }
+  };
+
   return (
     <div>
       <Header />
@@ -35,7 +87,8 @@ const AddListing = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
               {carDetails.carDetails.map((item, index) => (
                 <div key={index}>
-                  <label className="text-sm">
+                  <label className="text-sm flex gap-2 items-center mb-1">
+                    <IconField icon={item?.icon} />
                     {item?.label}
                     {item.required && <span className="text-red-500">*</span>}
                   </label>
@@ -68,7 +121,7 @@ const AddListing = () => {
                 <div key={index} className="flex gap-2 items-center">
                   <Checkbox
                     onCheckedChange={(value) =>
-                      handleInputChange(item.name, value)
+                      handleFeatureChange(item.name, value)
                     }
                   />
                   <h2>{item.label}</h2>
@@ -76,12 +129,28 @@ const AddListing = () => {
               ))}
             </div>
           </div>
+          <Separator className="my-6" />
 
           {/* car images */}
+          <UploadImages
+            triggerUploadImage={triggerUploadImage}
+            setLoader={(v) => {
+              setLoader(v);
+              navigate("/profile");
+            }}
+          />
 
           <div className="mt-10 flex justify-end">
-            <Button type="submit" onClick={(e) => onSubmit(e)}>
-              Submit
+            <Button
+              type="submit"
+              onClick={(e) => onSubmit(e)}
+              disabled={loader}
+            >
+              {loader ? (
+                <BiLoaderAlt className="animate-spin text-lg" />
+              ) : (
+                "Submit"
+              )}
             </Button>
           </div>
         </form>
