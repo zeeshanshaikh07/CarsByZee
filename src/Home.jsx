@@ -19,9 +19,7 @@ const Home = () => {
       <Category />
       {/* Most seatch car */}
       <MostSearchedCar />
-
       {/* Info section */}
-
       <InfoSection />
       {/* Footer */}
       <Footer />

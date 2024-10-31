@@ -7,7 +7,7 @@ const Header = () => {
   const { user, isSignedIn } = useUser();
   return (
     <div className="flex justify-between items-center shadow-sm p-5">
-      CarsByZee
+      <Link to={"/"}>CarsByZee</Link>
       <ul className="hidden md:flex gap-16">
         <li className="font-medium hover:scale-105 transition-all cursor-pointer hover:text-primary">
           Home

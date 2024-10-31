@@ -3,9 +3,22 @@ import { uploadBytes, ref, getDownloadURL } from "firebase/storage";
 import React, { useEffect, useState } from "react";
 import { IoCloseCircle } from "react-icons/io5";
 import { CarImages } from "../../../configs/schema";
+import { db } from "../../../configs";
+import { eq } from "drizzle-orm";
 
-const UploadImages = ({ triggerUploadImage, setLoader }) => {
+const UploadImages = ({ triggerUploadImage, setLoader, carInfo, mode }) => {
   const [selectedFile, setSelectedFile] = useState([]);
+  const [editCarImage, setEditCarImage] = useState([]);
+
+  useEffect(() => {
+    if (mode == "edit") {
+      setEditCarImage([]);
+      carInfo?.images.forEach((image) => {
+        setEditCarImage((prev) => [...prev, image?.imageUrl]);
+        console.log(image);
+      });
+    }
+  }, [carInfo]);
 
   useEffect(() => {
     if (triggerUploadImage) {
@@ -25,6 +38,14 @@ const UploadImages = ({ triggerUploadImage, setLoader }) => {
   const onImageRemove = (image, index) => {
     const result = selectedFile.filter((item) => item != image);
     setSelectedFile(result);
+  };
+
+  const onImageRemoveFromDB = async (image, index) => {
+    const result = await db
+      .delete(CarImages)
+      .where(eq(CarImages.id, carInfo?.images[index]?.id));
+    const imageList = editCarImage.filter((item) => item != image);
+    setEditCarImage(imageList);
   };
 
   const uploadImageToServer = () => {
@@ -56,6 +77,22 @@ const UploadImages = ({ triggerUploadImage, setLoader }) => {
     <div>
       <h2 className="font-medium text-xl my-3">Upload Car Images</h2>
       <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-5">
+        {mode == "edit" &&
+          editCarImage.map((image, index) => (
+            <div key={index}>
+              <h2>
+                <IoCloseCircle
+                  className="absolute m-2 text-lg text-white cursor-pointer"
+                  onClick={() => onImageRemoveFromDB(image, index)}
+                />
+              </h2>
+              <img
+                src={image}
+                className="w-full h-[130px] object-cover rounded-xl"
+                alt=""
+              />
+            </div>
+          ))}
         {selectedFile.map((image, index) => (
           <div key={index}>
             <h2>
