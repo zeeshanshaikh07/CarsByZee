@@ -1,8 +1,17 @@
-# React + Vite
+# CarsByZee
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+CarsByZee is a web application that showcases various cars with their details, allowing users to browse a selection of vehicles with a smooth, interactive experience. Built with a focus on performance and modern design, the app aims to provide a user-friendly interface for viewing car details.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Car Listing**: Displays a wide selection of cars with detailed specifications.
+- **Responsive Design**: Optimized for desktop and mobile screens.
+- **Interactive Carousel**: Smooth, swipeable carousel to showcase cars.
+- **Admin Control**: Secure admin-only access to manage car listings (add, update, delete).
+- **Search & Filter**: Easy search and filter functionality to refine results.
+
+## Tech Stack
+
+- **Frontend**: [React](https://reactjs.org/), Vite
+- **Database**: Drizzle for storing car details
+- **Hosting**: [Vercel](https://vercel.com/)
