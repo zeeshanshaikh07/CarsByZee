@@ -9,10 +9,12 @@ import { useUser } from "@clerk/clerk-react";
 import Service from "@/Shared/Service";
 import CarItem from "@/components/CarItem";
 import { FaTrashAlt } from "react-icons/fa";
+import CarItemSkeleton from "@/AddListing/components/CarItemSkeleton";
 
 const MyListing = () => {
   const { user } = useUser();
   const [carList, setCarList] = useState([]);
+  const [loading, setLoading] = useState(true); // Loading state for skeleton
 
   useEffect(() => {
     user && getUserCarListing();
@@ -28,6 +30,7 @@ const MyListing = () => {
     const resp = Service.formatResult(result);
     console.log(resp);
     setCarList(resp);
+    setLoading(false); // Data has loaded, set loading to false
   };
 
   return (
@@ -41,21 +44,28 @@ const MyListing = () => {
         </Link>
       </div>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-7 gap-5">
-        {carList.map((item, index) => (
-          <div key={index}>
-            <CarItem car={item} />
-            <div className="p-2 bg-gray-50 rounded-lg flex justify-between gap-3">
-              <Link to={"/add-listing?mode=edit&id=" + item?.id} className="w-full">
-                <Button variant="outline" className="w-full">
-                  Edit
-                </Button>
-              </Link>
-              <Button variant="destructive">
-                <FaTrashAlt />
-              </Button>
-            </div>
-          </div>
-        ))}
+        {loading
+          ? Array.from({ length: 8 }).map((_, index) => (
+              <CarItemSkeleton key={index} />
+            ))
+          : carList.map((item, index) => (
+              <div key={index}>
+                <CarItem car={item} />
+                <div className="p-2 bg-gray-50 rounded-lg flex justify-between gap-3">
+                  <Link
+                    to={"/add-listing?mode=edit&id=" + item?.id}
+                    className="w-full"
+                  >
+                    <Button variant="outline" className="w-full">
+                      Edit
+                    </Button>
+                  </Link>
+                  <Button variant="destructive">
+                    <FaTrashAlt />
+                  </Button>
+                </div>
+              </div>
+            ))}
       </div>
     </div>
   );

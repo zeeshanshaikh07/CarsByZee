@@ -1,4 +1,4 @@
-import { UserButton, useUser } from "@clerk/clerk-react";
+import { SignInButton, UserButton, useUser } from "@clerk/clerk-react";
 import React from "react";
 import { Button } from "./ui/button";
 import { Link } from "react-router-dom";
@@ -30,7 +30,9 @@ const Header = () => {
           </Link>
         </div>
       ) : (
-        <Button>Submit Listing</Button>
+        <SignInButton mode="modal" fallbackRedirectUrl="/profile">
+          <Button>Submit Listing</Button>
+        </SignInButton>
       )}
     </div>
   );
