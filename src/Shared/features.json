@@ -1,7 +1,7 @@
 {
     "features": [
       {
-        "label": "Air Conditioner",
+        "label": "Automatic Climate Control",
         "name": "airConditioner",
         "fieldType": "checkbox"
       },
@@ -11,23 +11,18 @@
         "fieldType": "checkbox"
       },
       {
-        "label": "Heater",
-        "name": "heater",
-        "fieldType": "checkbox"
-      },
-      {
         "label": "Leather Seats",
         "name": "leatherSeats",
         "fieldType": "checkbox"
       },
       {
-        "label": "Panoramic Moonroof",
-        "name": "panoramicMoonroof",
+        "label": "Alloy Wheels",
+        "name": "alloyWheels",
         "fieldType": "checkbox"
       },
       {
-        "label": "Tachometer",
-        "name": "tachometer",
+        "label": "Panoramic Sunroof",
+        "name": "panoramicMoonroof",
         "fieldType": "checkbox"
       },
       {
@@ -36,7 +31,7 @@
         "fieldType": "checkbox"
       },
       {
-        "label": "Anti-lock Braking",
+        "label": "Anti-lock Braking System (ABS)",
         "name": "antiLockBraking",
         "fieldType": "checkbox"
       },
@@ -51,13 +46,13 @@
         "fieldType": "checkbox"
       },
       {
-        "label": "Driver Air Bag",
+        "label": "Driver Airbag",
         "name": "driverAirBag",
         "fieldType": "checkbox"
       },
       {
-        "label": "Power Door Locks",
-        "name": "powerDoorLocks",
+        "label": "Passenger Airbag",
+        "name": "PassengerAirBag",
         "fieldType": "checkbox"
       },
       {
@@ -91,11 +86,6 @@
         "fieldType": "checkbox"
       },
       {
-        "label": "Comfort & Convenience",
-        "name": "comfortConvenience",
-        "fieldType": "checkbox"
-      },
-      {
         "label": "Android Auto",
         "name": "androidAuto",
         "fieldType": "checkbox"
@@ -106,23 +96,8 @@
         "fieldType": "checkbox"
       },
       {
-        "label": "Bluetooth",
-        "name": "bluetooth",
-        "fieldType": "checkbox"
-      },
-      {
-        "label": "HomeLink",
-        "name": "homeLink",
-        "fieldType": "checkbox"
-      },
-      {
         "label": "Power Steering",
         "name": "powerSteering",
-        "fieldType": "checkbox"
-      },
-      {
-        "label": "Vanity Mirror",
-        "name": "vanityMirror",
         "fieldType": "checkbox"
       }
     ]

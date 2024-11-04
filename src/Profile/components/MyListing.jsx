@@ -28,7 +28,6 @@ const MyListing = () => {
       .orderBy(desc(CarListing.id));
 
     const resp = Service.formatResult(result);
-    console.log(resp);
     setCarList(resp);
     setLoading(false); // Data has loaded, set loading to false
   };

@@ -28,7 +28,6 @@ const MostSearchedCar = () => {
       .limit(10);
 
     const resp = Service.formatResult(result);
-    console.log(resp);
     setCarList(resp);
   };
   return (

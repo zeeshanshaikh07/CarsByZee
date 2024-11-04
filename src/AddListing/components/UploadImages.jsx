@@ -15,7 +15,6 @@ const UploadImages = ({ triggerUploadImage, setLoader, carInfo, mode }) => {
       setEditCarImage([]);
       carInfo?.images.forEach((image) => {
         setEditCarImage((prev) => [...prev, image?.imageUrl]);
-        console.log(image);
       });
     }
   }, [carInfo]);
@@ -62,7 +61,6 @@ const UploadImages = ({ triggerUploadImage, setLoader, carInfo, mode }) => {
         })
         .then((resp) => {
           getDownloadURL(storageRef).then(async (downloadURL) => {
-            console.log(downloadURL);
             await db.insert(CarImages).values({
               imageUrl: downloadURL,
               carListingId: triggerUploadImage,

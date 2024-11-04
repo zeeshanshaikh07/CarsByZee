@@ -74,14 +74,11 @@ const AddListing = () => {
       ...prevData,
       [name]: value,
     }));
-
-    console.log(featuresData);
   };
 
   const onSubmit = async (e) => {
     setLoader(true);
     e.preventDefault();
-    console.log(formData);
     toast("Please Wait...");
 
     if (mode == "edit") {
@@ -97,7 +94,6 @@ const AddListing = () => {
         })
         .where(eq(CarListing.id, recordId))
         .returning({ id: CarListing.id });
-      console.log(result);
       navigate("/profile");
       setLoader(false);
     } else {
@@ -114,7 +110,6 @@ const AddListing = () => {
           })
           .returning({ id: CarListing.id });
         if (result) {
-          console.log("Data Saved");
           setTriggerUploadImage(result[0]?.id);
           setLoader(false);
         }
@@ -138,11 +133,15 @@ const AddListing = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
               {carDetails.carDetails.map((item, index) => (
                 <div key={index}>
-                  <label className="text-sm flex gap-2 items-center mb-1">
+                  <label
+                    htmlFor=""
+                    className="text-sm flex gap-2 items-center mb-1"
+                  >
                     <IconField icon={item?.icon} />
                     {item?.label}
                     {item.required && <span className="text-red-500">*</span>}
                   </label>
+
                   {item.fieldType == "text" || item.fieldType == "number" ? (
                     <InputField
                       item={item}

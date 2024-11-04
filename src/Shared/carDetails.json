@@ -1,7 +1,7 @@
 {
   "carDetails": [
     {
-      "label": "Listing Title",
+      "label": "Title",
       "name": "listingTitle",
       "fieldType": "text",
       "required": true,
@@ -15,15 +15,9 @@
       "column": 2,
       "icon": "FaTag"
     },
+
     {
-      "label": "Original Price",
-      "name": "originalPrice",
-      "fieldType": "text",
-      "column": 1,
-      "icon": "FaDollarSign"
-    },
-    {
-      "label": "Selling Price",
+      "label": "Price",
       "name": "sellingPrice",
       "fieldType": "text",
       "required": true,
@@ -34,21 +28,21 @@
       "label": "Category",
       "name": "category",
       "fieldType": "dropdown",
-      "options": ["Sedan", "SUV", "Truck", "Coupe", "Convertible", "Van", "Hatchback","Electric","Hybrid"],
+      "options": [
+        "Sedan",
+        "SUV",
+        "Truck",
+        "Coupe",
+        "Convertible",
+        "Van",
+        "Hatchback",
+        "Electric",
+        "Hybrid"
+      ],
       "required": true,
       "column": 1,
       "icon": "FaCar"
     },
-    {
-      "label": "Condition",
-      "name": "condition",
-      "fieldType": "dropdown",
-      "required": true,
-      "options": ["New", "Used", "Certified Pre-Owned"],
-      "column": 1,
-      "icon": "FaCheckCircle"
-    },
-    
     {
       "label": "Make",
       "name": "make",
@@ -65,6 +59,8 @@
         "Audi",
         "Tesla",
         "Volkswagen",
+        "Maruti",
+        "Tata",
         "Hyundai",
         "Kia",
         "Lexus",
@@ -160,13 +156,6 @@
       "icon": "FaWrench"
     },
     {
-      "label": "Cylinder",
-      "name": "cylinder",
-      "fieldType": "number",
-      "column": 1,
-      "icon": "FaCircle"
-    },
-    {
       "label": "Color",
       "name": "color",
       "fieldType": "dropdown",
@@ -176,30 +165,7 @@
       "icon": "FaPalette"
     },
     {
-      "label": "Door",
-      "name": "door",
-      "fieldType": "number",
-      "required": true,
-      "column": 1,
-      "icon": "FaDoorClosed"
-    },
-    {
-      "label": "VIN",
-      "name": "vin",
-      "fieldType": "text",
-      "column": 1,
-      "icon": "FaIdCard"
-    },
-    {
-      "label": "Offer Type",
-      "name": "offerType",
-      "fieldType": "dropdown",
-      "options": ["Buy", "Hot Offer", "Sell", "Urgent"],
-      "column": 2,
-      "icon": "FaTags"
-    },
-    {
-      "label": "Listing Description",
+      "label": "Description",
       "name": "listingDescription",
       "fieldType": "textarea",
       "required": true,
