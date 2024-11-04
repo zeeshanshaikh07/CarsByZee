@@ -10,7 +10,6 @@ const FinancialCalculator = ({ carDetail }) => {
   const [monthlyPayment, setMonthlyPayment] = useState(0);
 
   const CalculateMonthlyPayment = () => {
-    console.log(carPrice, intrestRate, loanTerm, downPayment);
     const Principal = carPrice - downPayment;
     const MonthlyInterestRate = intrestRate / 1200; // Convert to Decimal;
 

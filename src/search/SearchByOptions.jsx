@@ -19,8 +19,6 @@ const SearchByOptions = () => {
   const make = searchParams.get("make");
   const price = searchParams.get("price");
 
-  console.log(condition, make, price);
-
   useEffect(() => {
     getCarList();
   }, []);

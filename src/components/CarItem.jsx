@@ -29,7 +29,7 @@ const CarItem = ({ car }) => {
             </div>
             <div className="flex flex-col items-center">
               <TbBrandSpeedtest className="text-lg mb-2" />
-              <h2>{car?.mileage} Kms</h2>
+              <h2>{car?.mileage} Kmpl</h2>
             </div>
             <div className="flex flex-col items-center">
               <GiGearStickPattern className="text-lg mb-2" />
