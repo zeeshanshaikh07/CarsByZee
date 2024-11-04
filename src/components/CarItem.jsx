@@ -4,7 +4,7 @@ import { LuFuel } from "react-icons/lu";
 import { TbBrandSpeedtest } from "react-icons/tb";
 import { GiGearStickPattern } from "react-icons/gi";
 import { MdOpenInNew } from "react-icons/md";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const CarItem = ({ car }) => {
   return (

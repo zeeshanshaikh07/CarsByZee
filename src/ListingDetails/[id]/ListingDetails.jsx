@@ -15,10 +15,19 @@ import OwnerDetails from "../components/OwnerDetails";
 import Footer from "@/components/Footer";
 import FinancialCalculator from "../components/FinancialCalculator";
 import MostSearchedCar from "@/components/MostSearchedCar";
+import DetailHeaderSkeleton from "../SkeletonComponent/DetailHeaderSkeleton";
+import ImageGalleySkeleton from "../SkeletonComponent/ImageGalleySkeleton";
+import DescriptionSkeleton from "../SkeletonComponent/DescriptionSkeleton";
+import FeaturesSkeleton from "../SkeletonComponent/FeaturesSkeleton";
+import FinancialCalculatorSkeleton from "../SkeletonComponent/FinancialCalculatorSkeleton";
+import PricingSkeleton from "../SkeletonComponent/PricingSkeleton";
+import SpecificationsSkeleton from "../SkeletonComponent/SpecificationsSkeleton";
+import OwnerDetailsSkeleton from "../SkeletonComponent/OwnerDetailsSkeleton";
 
 const ListingDetails = () => {
   const { id } = useParams();
   const [carDetails, setCarDetails] = useState();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     getCarDetails();
@@ -33,6 +42,7 @@ const ListingDetails = () => {
 
     const resp = Service.formatResult(result);
     setCarDetails(resp[0]);
+    setLoading(false); // Set loading to false once data is fetched
   };
 
   return (
@@ -41,30 +51,67 @@ const ListingDetails = () => {
 
       {/* Header details */}
       <div className="p-10 md:px-20">
-        <DetailHeader carDetails={carDetails} />
+        {loading ? (
+          <DetailHeaderSkeleton />
+        ) : (
+          <DetailHeader carDetails={carDetails} />
+        )}
         <div className="grid grid-cols-1 md:grid-cols-3 w-full mt-10 gap-5">
           {/* left */}
           <div className="md:col-span-2">
             {/* Images */}
-            <ImageGallery carDetails={carDetails} />
-            {/* Desc */}
-            <Description carDetails={carDetails} />
-            {/* features */}
-            <Features features={carDetails?.features} />
+            {loading ? (
+              <ImageGalleySkeleton />
+            ) : (
+              <ImageGallery carDetails={carDetails} />
+            )}
 
-            <FinancialCalculator carDetails={carDetails} />
+            {/* Desc */}
+            {loading ? (
+              <DescriptionSkeleton />
+            ) : (
+              <Description carDetails={carDetails} />
+            )}
+
+            {/* features */}
+            {loading ? (
+              <FeaturesSkeleton />
+            ) : (
+              <Features features={carDetails?.features} />
+            )}
+
+            {loading ? (
+              <FinancialCalculatorSkeleton />
+            ) : (
+              <FinancialCalculator carDetails={carDetails} />
+            )}
           </div>
           {/* right */}
           <div>
             {/* price */}
-            <Pricing carDetails={carDetails} />
+            {loading ? (
+              <PricingSkeleton />
+            ) : (
+              <Pricing carDetails={carDetails} />
+            )}
+
             {/* details */}
-            <Specifications carDetails={carDetails} />
+            {loading ? (
+              <SpecificationsSkeleton />
+            ) : (
+              <Specifications carDetails={carDetails} />
+            )}
+
             {/* owner details */}
-            <OwnerDetails carDetails={carDetails} />
+            {loading ? (
+              <OwnerDetailsSkeleton />
+            ) : (
+              <OwnerDetails carDetails={carDetails} />
+            )}
+            
           </div>
         </div>
-        <MostSearchedCar />
+        {/* <MostSearchedCar /> */}
       </div>
       <Footer />
     </div>

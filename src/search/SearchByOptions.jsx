@@ -8,6 +8,7 @@ import Header from "@/components/Header";
 import Search from "@/components/Search";
 import CarItemSkeleton from "@/AddListing/components/CarItemSkeleton";
 import CarItem from "@/components/CarItem";
+import Footer from "@/components/Footer";
 
 const SearchByOptions = () => {
   const [searchParams] = useSearchParams();
@@ -65,6 +66,7 @@ const SearchByOptions = () => {
           )}
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

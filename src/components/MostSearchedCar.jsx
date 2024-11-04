@@ -34,7 +34,7 @@ const MostSearchedCar = () => {
   return (
     <div className="mx-24 md:block">
       <h2 className="font-bold text-3xl text-center mt-16 mb-7">
-        Most Searched Cars
+        Available Cars
       </h2>
       <Carousel>
         <CarouselContent>

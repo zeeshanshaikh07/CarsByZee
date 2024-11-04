@@ -8,6 +8,7 @@ import { useParams } from "react-router-dom";
 import Service from "@/Shared/Service";
 import CarItem from "@/components/CarItem";
 import CarItemSkeleton from "@/AddListing/components/CarItemSkeleton";
+import Footer from "@/components/Footer";
 
 const SearchByCategory = () => {
   const { category } = useParams();
@@ -59,6 +60,7 @@ const SearchByCategory = () => {
           )}
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

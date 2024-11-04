@@ -48,7 +48,7 @@ function Search() {
       </Select>
       <Separator orientation="vertical" className="hidden md:block" />
 
-      <Select onValueChange={(value) => setPrice(value)}>
+      {/* <Select onValueChange={(value) => setPrice(value)}>
         <SelectTrigger className="outline-none md:border-none w-full shadow-none text-lg">
           <SelectValue placeholder="Pricing" />
         </SelectTrigger>
@@ -57,7 +57,7 @@ function Search() {
             <SelectItem value={price.amount}>{price.amount}</SelectItem>
           ))}
         </SelectContent>
-      </Select>
+      </Select> */}
       <Link to={"/search?cars=" + cars + "&make=" + make + "&price=" + price}>
         <CiSearch
           className="text-[50px] bg-primary 
